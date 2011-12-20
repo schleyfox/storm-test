@@ -52,6 +52,20 @@ Usage is like so:
 You can also play with the clusters time and other such nasty pranks inside of
 here.
 
+### storm.test.visualization
+
+Sometimes it is nice to see what your topology actually looks like.  This
+namespace includes utilities to turn your topology into a pretty graph.  To
+use this, you need to have graphviz installed and dot somewhere on your PATH.
+
+You probably want to use this from the REPL, in which case typing
+
+    (visualize-topology your-topology)
+
+will create and open a png of your topology.  The result looks like this:
+
+![A silly topology](https://raw.github.com/schleyfox/storm-test/master/topology.png "A silly topology")
+
 ## TODO
 
 1. tracked-capturing-topology for use with tracked clusters.  I go back and
