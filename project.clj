@@ -1,4 +1,4 @@
-(defproject storm-test "0.1.0"
+(defproject storm-test "0.2.0"
   :description "Testing utilities for storm"
   :source-path "src/clj"
   :java-source-path "src/jvm"

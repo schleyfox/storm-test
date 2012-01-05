@@ -28,7 +28,8 @@
                  (for [[id spec] 
                        (merge (clojurify-structure spouts) 
                               (clojurify-structure bolts))]
-                   (for [[stream _] (.. spec get_common get_streams)]
+                   (for [[stream info] (.. spec get_common get_streams)
+                         :when (not (.is_direct info))]
                      (GlobalStreamId. id stream))))
          capturer (persistent-tuple-capture-bolt storm-name) ]
     (doseq [[id spout] feeders]

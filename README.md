@@ -52,6 +52,15 @@ Usage is like so:
 You can also play with the clusters time and other such nasty pranks inside of
 here.
 
+### storm.test.drpc
+
+Simulated time is awesome. DRPC is awesome.  Together though, there is only
+pain and your test will hang forever.  The <tt>execute-drpc!</tt> helper
+allows your tests to use drpc with or without simulated time.  It may be
+exceptionally useful in a capturing topology.  Usage is like so:
+
+    (execute-drpc! cluster drpc-client "exclamation" "hello")
+
 ### storm.test.visualization
 
 Sometimes it is nice to see what your topology actually looks like.  This
@@ -70,7 +79,6 @@ will create and open a png of your topology.  The result looks like this:
 
 1. tracked-capturing-topology for use with tracked clusters.  I go back and
    forth on whether this would help many situations.
-2. DRPC testing helpers.
 3. Failure testing: attach a bolt that fails tuples under certain conditions
    as well as beef up testing spouts to replay realistically.
 4. Test-generative helpers.  test-generative seems cool, would be nice to test
