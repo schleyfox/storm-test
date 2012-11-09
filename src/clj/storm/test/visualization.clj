@@ -98,7 +98,8 @@
     (fn [bolt-spec]
       (let [ id (key bolt-spec)
              bolt (val bolt-spec)
-             inputs (clojurify-structure (.get_inputs bolt)) ]
+             common (.get_common bolt)
+             inputs (clojurify-structure (.get_inputs common)) ]
         (map
           (fn [input]
             (let [ from (key input)

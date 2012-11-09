@@ -20,6 +20,10 @@ public class DRPCExclamationTopology {
         public void prepare(Map conf, TopologyContext context) {
         }
 
+        public Map<String,Object> getComponentConfiguration() {
+          return null;
+        }
+
         @Override
         public void execute(Tuple tuple, BasicOutputCollector collector) {
             String input = tuple.getString(1);
