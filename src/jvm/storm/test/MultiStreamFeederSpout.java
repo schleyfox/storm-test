@@ -110,6 +110,9 @@ public class MultiStreamFeederSpout implements ISpout {
     }
   }
 
+  public void activate() {}
+  public void deactivate() {}
+
   public void fail(Object msgId) {
     synchronized(failed) {
       int curr = get(failed, _context.getStormId(), 0);

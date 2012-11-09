@@ -8,7 +8,6 @@
   (:import [storm.test MultiStreamFeederSpout])
   (:require [backtype.storm.daemon [common :as common]])
   (:use [storm.test.persistent-tuple-capture-bolt])
-  (:use [clojure.contrib.def :only [defnk]])
   (:use [backtype.storm util config thrift clojure testing log]))
 
 (defnk capturing-topology 
@@ -38,10 +37,11 @@
     (.set_bolts topology
                 (assoc (clojurify-structure bolts)
                   (uuid)
-                  (Bolt.
-                    (into {} (for [id all-streams] [id (mk-global-grouping)]))
-                    (serialize-component-object capturer)
-                    (mk-plain-component-common {} nil))))
+                  (let [input-spec (into {} (for [id all-streams]
+                                               [id (mk-global-grouping)]))]
+                    (Bolt.
+                      (serialize-component-object capturer)
+                      (mk-plain-component-common input-spec {} nil)))))
     (submit-local-topology 
       (:nimbus cluster-map) storm-name storm-conf topology)
     (let [storm-id (common/get-storm-id state storm-name) ]
